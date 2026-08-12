@@ -1,0 +1,62 @@
+{
+  "routes": [
+    { "slug": "college-hill", "name": "College Hill" },
+    { "slug": "downcity", "name": "Downcity" }
+  ],
+  "gems": [
+    {
+      "slug": "van-wickle-gates",
+      "route": "college-hill",
+      "title": "Van Wickle Gates",
+      "description": "Take a team photo in front of the Van Wickle Gates. Everyone must be in frame!",
+      "order_index": 1,
+      "points": 10
+    },
+    {
+      "slug": "john-hay-library",
+      "route": "college-hill",
+      "title": "John Hay Library",
+      "description": "Find the John Hay Library and snap a creative pose on the steps.",
+      "order_index": 2,
+      "points": 10
+    },
+    {
+      "slug": "the-rock",
+      "route": "college-hill",
+      "title": "The Rock (SciLi neighbor)",
+      "description": "Photo at the Rockefeller Library sign.",
+      "order_index": 3,
+      "points": 15
+    },
+    {
+      "slug": "waterfire-basin",
+      "route": "downcity",
+      "title": "WaterFire Basin",
+      "description": "Team photo by the WaterFire basin downtown.",
+      "order_index": 1,
+      "points": 10
+    },
+    {
+      "slug": "providence-city-hall",
+      "route": "downcity",
+      "title": "Providence City Hall",
+      "description": "Strike a pose in front of City Hall.",
+      "order_index": 2,
+      "points": 10
+    },
+    {
+      "slug": "brown-bear-statue",
+      "route": null,
+      "title": "Bruno the Bear",
+      "description": "Bonus gem for everyone: find a Brown Bear and recreate its pose!",
+      "order_index": 99,
+      "points": 20
+    }
+  ],
+  "teams": [
+    { "name": "Team Bruno", "code": "BEAR12", "route": "college-hill" },
+    { "name": "Team Brunonia", "code": "LION42", "route": "college-hill" },
+    { "name": "Team Van Wickle", "code": "GATE77", "route": "downcity" },
+    { "name": "Team Ratty", "code": "FOOD99", "route": "downcity" }
+  ]
+}
