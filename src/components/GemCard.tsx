@@ -33,7 +33,11 @@ export function GemCard({
   teamCode: string;
   onUpdated: (gemId: number, submission: HuntSubmission) => void;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  // Two hidden file inputs: the gallery one has no `capture` attribute so
+  // phones open the photo library; the camera one forces the native camera
+  // and only backs up the in-app camera when getUserMedia is unavailable.
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [localPreview, setLocalPreview] = useState<string | null>(null);
@@ -132,7 +136,14 @@ export function GemCard({
       {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
 
       <input
-        ref={inputRef}
+        ref={galleryInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFile}
+      />
+      <input
+        ref={cameraInputRef}
         type="file"
         accept="image/*"
         capture="environment"
@@ -156,12 +167,13 @@ export function GemCard({
           </button>
           <button
             type="button"
-            onClick={() => inputRef.current?.click()}
+            onClick={() => galleryInputRef.current?.click()}
             disabled={busy}
-            title="Upload from your photo library"
-            className="rounded-xl border border-stone-300 px-3 py-2.5 text-sm font-medium text-stone-600 transition active:scale-[0.99] disabled:opacity-50"
+            title="Choose an existing photo from your gallery"
+            className="flex items-center justify-center gap-1.5 rounded-xl border border-stone-300 px-3 py-2.5 text-sm font-medium text-stone-600 transition active:scale-[0.99] disabled:opacity-50"
           >
-            Upload
+            <span aria-hidden>🖼️</span>
+            Gallery
           </button>
         </div>
       )}
@@ -173,7 +185,7 @@ export function GemCard({
           onClose={() => setShowCamera(false)}
           onFallback={() => {
             setShowCamera(false);
-            inputRef.current?.click();
+            cameraInputRef.current?.click();
           }}
         />
       )}
