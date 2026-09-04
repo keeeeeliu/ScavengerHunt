@@ -15,6 +15,13 @@ export async function POST(req: Request) {
   if (!code) {
     return NextResponse.json({ error: "Please enter a team code." }, { status: 400 });
   }
+  // Codes are short and alphanumeric; anything else can't match a team.
+  if (!/^[A-Z0-9]{1,12}$/.test(code)) {
+    return NextResponse.json(
+      { error: "That team code was not found. Double-check with an organizer." },
+      { status: 404 }
+    );
+  }
 
   const supabase = getServiceClient();
   const { data: team, error } = await supabase

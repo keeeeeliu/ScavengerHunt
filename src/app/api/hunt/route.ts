@@ -10,6 +10,9 @@ export async function GET(req: Request) {
   if (!code) {
     return NextResponse.json({ error: "Missing team code." }, { status: 400 });
   }
+  if (!/^[A-Z0-9]{1,12}$/.test(code)) {
+    return NextResponse.json({ error: "Team not found." }, { status: 404 });
+  }
 
   const supabase = getServiceClient();
 

@@ -22,6 +22,9 @@ export async function POST(req: Request) {
   if (!code || Number.isNaN(gemId) || !(file instanceof File)) {
     return NextResponse.json({ error: "Missing code, gem, or photo." }, { status: 400 });
   }
+  if (!/^[A-Z0-9]{1,12}$/.test(code)) {
+    return NextResponse.json({ error: "Team not found." }, { status: 404 });
+  }
   if (!file.type.startsWith("image/")) {
     return NextResponse.json({ error: "Please upload an image." }, { status: 400 });
   }
