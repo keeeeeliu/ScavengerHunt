@@ -172,7 +172,7 @@ export function GemCard({
             title="Choose an existing photo from your gallery"
             className="flex items-center justify-center gap-1.5 rounded-xl border border-stone-300 px-3 py-2.5 text-sm font-medium text-stone-600 transition active:scale-[0.99] disabled:opacity-50"
           >
-            <span aria-hidden>🖼️</span>
+            <span aria-hidden>🎞️</span>
             Gallery
           </button>
         </div>
