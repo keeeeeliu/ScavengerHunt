@@ -98,6 +98,13 @@ export default function HuntPage() {
     };
   }, [router, load]);
 
+  function switchTeam() {
+    const name = team?.name ?? "this team";
+    if (window.confirm(`Leave ${name}? You can rejoin any team by entering its code.`)) {
+      router.push("/join?switch=1");
+    }
+  }
+
   async function copyCode() {
     if (!team) return;
     try {
@@ -157,6 +164,13 @@ export default function HuntPage() {
             <Link href="/leaderboard" className="underline">
               Leaderboard
             </Link>
+            <button
+              onClick={switchTeam}
+              title="Leave this team and enter a different code"
+              className="text-stone-400 underline decoration-dotted"
+            >
+              Switch
+            </button>
           </span>
         </div>
       </header>
