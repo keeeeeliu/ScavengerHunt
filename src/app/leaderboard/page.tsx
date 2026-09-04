@@ -98,7 +98,12 @@ export default function LeaderboardPage() {
                 />
               </div>
               <p className="mt-1 text-xs text-stone-400">
-                {row.approved_count} gem{row.approved_count === 1 ? "" : "s"} approved
+                {row.approved_count} gem{row.approved_count === 1 ? "" : "s"} collected
+                {row.paper_count > 0 && (
+                  <span className="ml-2 rounded-full bg-sky-100 px-2 py-0.5 font-semibold text-sky-800">
+                    📝 {row.paper_count} on paper
+                  </span>
+                )}
                 {row.bear_bonus > 0 && (
                   <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 font-semibold text-amber-800">
                     🐻 all bears +{row.bear_bonus}

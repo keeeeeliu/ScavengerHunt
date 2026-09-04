@@ -42,7 +42,10 @@ export interface GemWithSubmission extends Gem {
 export interface LeaderboardRow {
   team_id: number;
   team_name: string;
+  /** Gems collected: app-approved plus paper-scorecard claims, deduplicated. */
   approved_count: number;
+  /** How many of those came from the paper scorecard only. */
+  paper_count: number;
   /** Sum of points_awarded on approved submissions, before bonuses. */
   base_points: number;
   /** +5 when the team has approved photos of every bear gem (🐻 in title). */
