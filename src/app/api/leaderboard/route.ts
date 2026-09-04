@@ -8,7 +8,13 @@ export const dynamic = "force-dynamic";
 const BEAR_BONUS = 5;
 const TOP_COLLECTOR_BONUS = 3;
 
-export async function GET() {
+const csvCell = (v: string | number) => {
+  const s = String(v);
+  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+};
+
+/** GET /api/leaderboard — JSON; add ?format=csv for a spreadsheet-friendly CSV. */
+export async function GET(req: Request) {
   const supabase = getServiceClient();
 
   const { data: teams, error: teamError } = await supabase
@@ -114,6 +120,27 @@ export async function GET() {
       b.approved_count - a.approved_count ||
       a.team_name.localeCompare(b.team_name)
   );
+
+  if (new URL(req.url).searchParams.get("format") === "csv") {
+    const lines = [
+      "Rank,Team,Gems Collected,From Paper,Base Points,Bear Bonus,Top Collector Bonus,Total Points",
+      ...rows.map((r, i) =>
+        [
+          i + 1,
+          csvCell(r.team_name),
+          r.approved_count,
+          r.paper_count,
+          r.base_points,
+          r.bear_bonus,
+          r.top_collector_bonus,
+          r.points,
+        ].join(",")
+      ),
+    ];
+    return new NextResponse(lines.join("\n") + "\n", {
+      headers: { "Content-Type": "text/csv; charset=utf-8" },
+    });
+  }
 
   return NextResponse.json({ leaderboard: rows });
 }
