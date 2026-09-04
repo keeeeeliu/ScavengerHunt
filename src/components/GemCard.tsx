@@ -3,6 +3,8 @@
 import { useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
 import { StatusBadge } from "./StatusBadge";
+import { CameraCapture } from "./CameraCapture";
+import { gemImageForSlug } from "@/lib/gemImages";
 import type { SubmissionStatus } from "@/lib/types";
 
 export interface HuntSubmission {
@@ -14,6 +16,7 @@ export interface HuntSubmission {
 
 export interface HuntGem {
   id: number;
+  slug: string;
   title: string;
   description: string | null;
   points: number;
@@ -34,17 +37,15 @@ export function GemCard({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [localPreview, setLocalPreview] = useState<string | null>(null);
+  const [showCamera, setShowCamera] = useState(false);
 
   const status: SubmissionStatus | "none" = gem.submission?.status ?? "none";
 
-  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    e.target.value = ""; // allow re-picking the same file
-    if (!file) return;
-
+  async function uploadFile(file: File) {
     setError(null);
     setBusy(true);
-    setLocalPreview(URL.createObjectURL(file));
+    const preview = URL.createObjectURL(file);
+    setLocalPreview(preview);
 
     try {
       const compressed = await imageCompression(file, {
@@ -69,7 +70,7 @@ export function GemCard({
         id: data.submission.id,
         status: data.submission.status,
         points_awarded: data.submission.points_awarded,
-        photo_url: localPreview,
+        photo_url: preview,
       });
     } catch {
       setError("Upload failed. Check your connection and try again.");
@@ -78,8 +79,20 @@ export function GemCard({
     }
   }
 
+  function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // allow re-picking the same file
+    if (file) uploadFile(file);
+  }
+
+  function handleCapture(file: File) {
+    setShowCamera(false);
+    uploadFile(file);
+  }
+
   const thumb = localPreview ?? gem.submission?.photo_url ?? null;
   const hasPhoto = Boolean(thumb);
+  const sketch = gemImageForSlug(gem.slug);
 
   return (
     <li className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm">
@@ -88,6 +101,13 @@ export function GemCard({
           {thumb ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={thumb} alt="" className="h-full w-full object-cover" />
+          ) : sketch ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={sketch}
+              alt={`Sketch of ${gem.title}`}
+              className="h-full w-full object-contain p-1"
+            />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-2xl">💎</div>
           )}
@@ -119,14 +139,44 @@ export function GemCard({
         className="hidden"
         onChange={handleFile}
       />
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-        disabled={busy}
-        className="mt-3 w-full rounded-xl bg-brown px-4 py-2.5 text-sm font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
-      >
-        {busy ? "Uploading…" : hasPhoto ? "Retake photo" : "Take / upload photo"}
-      </button>
+      {status === "approved" ? (
+        <p className="mt-3 rounded-xl bg-emerald-50 px-4 py-2.5 text-center text-sm font-semibold text-emerald-700">
+          ✅ Approved — {gem.submission?.points_awarded ?? gem.points} pts locked in
+        </p>
+      ) : (
+        <div className="mt-3 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setShowCamera(true)}
+            disabled={busy}
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brown px-4 py-2.5 text-sm font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
+          >
+            <span aria-hidden>📷</span>
+            {busy ? "Uploading…" : hasPhoto ? "Retake photo" : "Take photo"}
+          </button>
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            disabled={busy}
+            title="Upload from your photo library"
+            className="rounded-xl border border-stone-300 px-3 py-2.5 text-sm font-medium text-stone-600 transition active:scale-[0.99] disabled:opacity-50"
+          >
+            Upload
+          </button>
+        </div>
+      )}
+
+      {showCamera && (
+        <CameraCapture
+          title={gem.title}
+          onCapture={handleCapture}
+          onClose={() => setShowCamera(false)}
+          onFallback={() => {
+            setShowCamera(false);
+            inputRef.current?.click();
+          }}
+        />
+      )}
     </li>
   );
 }

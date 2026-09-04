@@ -43,5 +43,12 @@ export interface LeaderboardRow {
   team_id: number;
   team_name: string;
   approved_count: number;
+  /** Sum of points_awarded on approved submissions, before bonuses. */
+  base_points: number;
+  /** +5 when the team has approved photos of every bear gem (🐻 in title). */
+  bear_bonus: number;
+  /** +3 while the team holds (or ties for) the most approved gems. */
+  top_collector_bonus: number;
+  /** base_points + bear_bonus + top_collector_bonus — what the standings rank by. */
   points: number;
 }

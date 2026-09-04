@@ -49,6 +49,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Gem not found." }, { status: 404 });
   }
 
+  // An approved gem is locked in: a teammate re-uploading must not reset it
+  // to pending and wipe the points the team already earned.
+  const { data: existing } = await supabase
+    .from("submissions")
+    .select("id, status")
+    .eq("team_id", team.id)
+    .eq("gem_id", gem.id)
+    .maybeSingle<{ id: number; status: string }>();
+  if (existing?.status === "approved") {
+    return NextResponse.json(
+      { error: "This gem is already approved — points are locked in. 🎉" },
+      { status: 409 }
+    );
+  }
+
   // Stable path per team+gem so re-submissions overwrite the previous photo.
   const path = `${team.id}/${gem.id}`;
   const bytes = new Uint8Array(await file.arrayBuffer());

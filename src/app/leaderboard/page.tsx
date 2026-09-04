@@ -10,6 +10,7 @@ const MEDALS = ["🥇", "🥈", "🥉"];
 export default function LeaderboardPage() {
   const [rows, setRows] = useState<LeaderboardRow[]>([]);
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const [fromAdmin, setFromAdmin] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
@@ -25,6 +26,7 @@ export default function LeaderboardPage() {
   }, []);
 
   useEffect(() => {
+    setFromAdmin(new URLSearchParams(window.location.search).get("from") === "admin");
     refresh();
 
     // Polling fallback (always on) keeps standings fresh even without realtime.
@@ -63,9 +65,15 @@ export default function LeaderboardPage() {
               : "Loading…"}
           </p>
         </div>
-        <Link href="/hunt" className="text-sm underline">
-          Back to hunt
-        </Link>
+        {fromAdmin ? (
+          <Link href="/admin" className="text-sm underline">
+            Back to review
+          </Link>
+        ) : (
+          <Link href="/hunt" className="text-sm underline">
+            Back to hunt
+          </Link>
+        )}
       </header>
 
       <ol className="space-y-2">
@@ -91,6 +99,16 @@ export default function LeaderboardPage() {
               </div>
               <p className="mt-1 text-xs text-stone-400">
                 {row.approved_count} gem{row.approved_count === 1 ? "" : "s"} approved
+                {row.bear_bonus > 0 && (
+                  <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 font-semibold text-amber-800">
+                    🐻 all bears +{row.bear_bonus}
+                  </span>
+                )}
+                {row.top_collector_bonus > 0 && (
+                  <span className="ml-2 rounded-full bg-emerald-100 px-2 py-0.5 font-semibold text-emerald-800">
+                    🏆 most gems +{row.top_collector_bonus}
+                  </span>
+                )}
               </p>
             </div>
             <div className="text-right">

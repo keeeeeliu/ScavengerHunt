@@ -22,6 +22,9 @@ interface HuntData {
     description: string | null;
     order_index: number;
     points: number;
+    /** Used by the /map page only; not stored in the database. */
+    lat?: number;
+    lng?: number;
   }[];
   teams: { name: string; code: string; route: string | null }[];
 }
@@ -43,11 +46,13 @@ async function main() {
     readFileSync(resolve(process.cwd(), "data/hunt.json"), "utf8")
   ) as HuntData;
 
-  // 1. Routes
-  const { error: routeErr } = await supabase
-    .from("routes")
-    .upsert(data.routes, { onConflict: "slug" });
-  if (routeErr) throw routeErr;
+  // 1. Routes (optional — a hunt with a single shared gem list has none)
+  if (data.routes.length) {
+    const { error: routeErr } = await supabase
+      .from("routes")
+      .upsert(data.routes, { onConflict: "slug" });
+    if (routeErr) throw routeErr;
+  }
 
   const { data: routes, error: routeFetchErr } = await supabase
     .from("routes")
@@ -69,19 +74,23 @@ async function main() {
     .upsert(gemRows, { onConflict: "slug" });
   if (gemErr) throw gemErr;
 
-  // 3. Teams
-  const teamRows = data.teams.map((t) => ({
-    name: t.name,
-    code: t.code.toUpperCase(),
-    route_id: t.route ? routeIdBySlug.get(t.route) ?? null : null,
-  }));
-  const { error: teamErr } = await supabase
-    .from("teams")
-    .upsert(teamRows, { onConflict: "code" });
-  if (teamErr) throw teamErr;
+  // 3. Teams (optional). Teams are normally created live by participants via
+  // /join, so this array is usually empty. Any listed here are pre-created.
+  const teams = data.teams ?? [];
+  if (teams.length) {
+    const teamRows = teams.map((t) => ({
+      name: t.name,
+      code: t.code.toUpperCase(),
+      route_id: t.route ? routeIdBySlug.get(t.route) ?? null : null,
+    }));
+    const { error: teamErr } = await supabase
+      .from("teams")
+      .upsert(teamRows, { onConflict: "code" });
+    if (teamErr) throw teamErr;
+  }
 
   console.log(
-    `Seeded ${data.routes.length} routes, ${data.gems.length} gems, ${data.teams.length} teams.`
+    `Seeded ${data.routes.length} routes, ${data.gems.length} gems, ${teams.length} teams.`
   );
 }
 

@@ -15,3 +15,51 @@ body {
 body {
   @apply bg-stone-100 text-stone-900 antialiased;
 }
+
+/* Numbered gem pins on the /map page (Leaflet divIcons). */
+.gem-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background: #4e3629; /* brown */
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+}
+.gem-pin--approved {
+  background: #059669;
+}
+.gem-pin--pending {
+  background: #d97706;
+}
+.gem-pin--rejected {
+  background: #dc2626;
+}
+.gem-pin--legend {
+  width: 14px;
+  height: 14px;
+  border-width: 1px;
+  box-shadow: none;
+}
+
+.gem-popup__title {
+  font-weight: 700;
+  color: #1c1917;
+}
+.gem-popup__pts {
+  margin-left: 4px;
+  font-weight: 600;
+  font-size: 11px;
+  color: #4e3629;
+  white-space: nowrap;
+}
+.gem-popup__desc {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #57534e;
+}

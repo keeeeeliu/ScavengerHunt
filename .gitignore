@@ -1,5 +1,9 @@
 /node_modules
 /.next
+/.next.nosync
+
+# local source copies of the sketches; the app serves /public/gem-pic
+/gem-pic
 /out
 /build
 .DS_Store

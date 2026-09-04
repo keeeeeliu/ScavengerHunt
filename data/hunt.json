@@ -1,62 +1,282 @@
 {
-  "routes": [
-    { "slug": "college-hill", "name": "College Hill" },
-    { "slug": "downcity", "name": "Downcity" }
-  ],
+  "routes": [],
   "gems": [
     {
-      "slug": "van-wickle-gates",
-      "route": "college-hill",
-      "title": "Van Wickle Gates",
-      "description": "Take a team photo in front of the Van Wickle Gates. Everyone must be in frame!",
-      "order_index": 1,
-      "points": 10
-    },
-    {
-      "slug": "john-hay-library",
-      "route": "college-hill",
-      "title": "John Hay Library",
-      "description": "Find the John Hay Library and snap a creative pose on the steps.",
-      "order_index": 2,
-      "points": 10
-    },
-    {
-      "slug": "the-rock",
-      "route": "college-hill",
-      "title": "The Rock (SciLi neighbor)",
-      "description": "Photo at the Rockefeller Library sign.",
-      "order_index": 3,
-      "points": 15
-    },
-    {
-      "slug": "waterfire-basin",
-      "route": "downcity",
-      "title": "WaterFire Basin",
-      "description": "Team photo by the WaterFire basin downtown.",
-      "order_index": 1,
-      "points": 10
-    },
-    {
-      "slug": "providence-city-hall",
-      "route": "downcity",
-      "title": "Providence City Hall",
-      "description": "Strike a pose in front of City Hall.",
-      "order_index": 2,
-      "points": 10
-    },
-    {
-      "slug": "brown-bear-statue",
+      "slug": "slavery-memorial",
       "route": null,
-      "title": "Bruno the Bear",
-      "description": "Bonus gem for everyone: find a Brown Bear and recreate its pose!",
-      "order_index": 99,
-      "points": 20
+      "title": "Slavery Memorial",
+      "description": "Martin Puryear, 2014 · Front Green. A broken cast-iron chain rising from a half-buried dome — links break at eye level and the dome mirrors the sky. A place for quiet reflection: photograph the memorial respectfully, no posing.",
+      "order_index": 1,
+      "points": 0,
+      "lat": 41.8265,
+      "lng": -71.4043
+    },
+    {
+      "slug": "advice-from-a-former-student",
+      "route": null,
+      "title": "Advice from a Former Student",
+      "description": "Nina Katchadourian, 2010 · Faunce House, near reception. Find the abstract ear symbol on the wall — two speakers loop 800 snippets of advice from Brown alumni, classes 1939–2010.",
+      "order_index": 2,
+      "points": 3,
+      "lat": 41.8268,
+      "lng": -71.40275
+    },
+    {
+      "slug": "idee-di-pietra",
+      "route": null,
+      "title": "Idee di Pietra (Ideas of Stone)",
+      "description": "Giuseppe Penone, 2006 · Main Green. A 27-ft bronze tree cradling a 5,000-lb granite river stone in its branches. Modeled on a nut tree; shown at dOCUMENTA (13) in 2012.",
+      "order_index": 3,
+      "points": 1,
+      "lat": 41.8263,
+      "lng": -71.4033
+    },
+    {
+      "slug": "brown-bear",
+      "route": null,
+      "title": "Brown Bear 🐻",
+      "description": "Eli Harvey, 1922 · Main Green, near Faunce Arch. The 7-ft bronze Bruno on a tall pedestal, funded by a \"Put Hair on the Bear\" drive that capped student gifts at $1. The pedestal holds slate Roger Williams reportedly stepped on in 1636.",
+      "order_index": 4,
+      "points": 1,
+      "lat": 41.82665,
+      "lng": -71.4027
+    },
+    {
+      "slug": "casey-shearer-memorial",
+      "route": null,
+      "title": "Casey Shearer Memorial",
+      "description": "Howard Ben Tré, 2003 · Casey Shearer '00 Courtyard, Main Green. A fountain of stacked bronze beads and glass — water trickles bead to bead. Honors a beloved Class of 2000 student and sports broadcaster.",
+      "order_index": 5,
+      "points": 3,
+      "lat": 41.8267,
+      "lng": -71.4024
+    },
+    {
+      "slug": "reclining-figure",
+      "route": null,
+      "title": "Reclining Figure No. 2 (Bridge Prop)",
+      "description": "Henry Moore, 1963 · Main Green. A three-part bronze reclining figure (often climbed on), inspired by London's Waterloo Bridge.",
+      "order_index": 6,
+      "points": 1,
+      "lat": 41.82655,
+      "lng": -71.4032
+    },
+    {
+      "slug": "marcus-aurelius",
+      "route": null,
+      "title": "Marcus Aurelius",
+      "description": "1908 · Ruth Simmons Quad, behind Sayles Hall. A bronze equestrian statue facing Thayer St through Soldiers Memorial Gate — a copy of the original on Capitoline Hill in Rome.",
+      "order_index": 7,
+      "points": 3,
+      "lat": 41.82605,
+      "lng": -71.4016
+    },
+    {
+      "slug": "war-memorial",
+      "route": null,
+      "title": "War Memorial",
+      "description": "Richard Fleischner, 1997 · Ruth Simmons Quad, near Soldiers Arch. A bronze lattice with a marble slab of names, roses growing through it. Honors 205 Brown alumni lost in WWII, Korea, and Vietnam.",
+      "order_index": 8,
+      "points": 2,
+      "lat": 41.826,
+      "lng": -71.401
+    },
+    {
+      "slug": "one-and-a-half",
+      "route": null,
+      "title": "1 1/2",
+      "description": "Carla Lavatelli · Science Plaza, in front of the SciLi. A 9-ft abstract sculpture with circular cut-outs on a black granite base. Weighs 7,000+ lbs; unveiled at 1985 Commencement.",
+      "order_index": 9,
+      "points": 2,
+      "lat": 41.827,
+      "lng": -71.4003
+    },
+    {
+      "slug": "america-one",
+      "route": null,
+      "title": "America One",
+      "description": "Dušan Džamonja · CIT (Watson Center) entrance, next to the SciLi. Two interlocking silver-and-dark metal discs. By a Croatian sculptor known for circular, WWII-themed works.",
+      "order_index": 10,
+      "points": 2,
+      "lat": 41.8268,
+      "lng": -71.3996
+    },
+    {
+      "slug": "infinite-possibility",
+      "route": null,
+      "title": "Infinite Possibility",
+      "description": "Brown STEAM students, 2019 · Lawn in front of the Engineering Research Center. A polished stainless-steel Möbius-strip sundial — at noon a bead of light traces the sun's yearly path. First student-designed piece approved by Brown's Public Art Committee.",
+      "order_index": 11,
+      "points": 3,
+      "lat": 41.8272,
+      "lng": -71.3989
+    },
+    {
+      "slug": "swearer-bear",
+      "route": null,
+      "title": "Swearer Bear 🐻",
+      "description": "Nicholas Swearer, 1988 · Maddock Alumni Center garden. A 5'6\" standing bronze bear — look inside the mouth: it's actually a person in a bear suit.",
+      "order_index": 12,
+      "points": 5,
+      "lat": 41.8248,
+      "lng": -71.4031
+    },
+    {
+      "slug": "little-bear-fountain",
+      "route": null,
+      "title": "Little Bear Fountain 🐻",
+      "description": "1937 · Next to the Brown Faculty Club, Magee St. A bronze bear perched atop a fountain, slightly off the main campus. A replica of a bear fountain the donor found in Breslau (now Wrocław).",
+      "order_index": 13,
+      "points": 5,
+      "lat": 41.8241,
+      "lng": -71.3994
+    },
+    {
+      "slug": "circle-dance",
+      "route": null,
+      "title": "Circle Dance",
+      "description": "Tom Friedman, 2010 · The Walk, Waterman St (across from BERT). Silvery figures dancing in a ring — cast from a maquette of aluminum roasting pans, inspired by Matisse's La Danse.",
+      "order_index": 14,
+      "points": 3,
+      "lat": 41.8276,
+      "lng": -71.40185
+    },
+    {
+      "slug": "guardian-birds",
+      "route": null,
+      "title": "Guardian Birds",
+      "description": "Façade of Robinson Hall, 64 Waterman St. Carved stone winged creatures on the building's exterior. Robinson Hall (1878) is on the National Register of Historic Places.",
+      "order_index": 15,
+      "points": 5,
+      "lat": 41.82695,
+      "lng": -71.40385
+    },
+    {
+      "slug": "pembroke-tribute-garden",
+      "route": null,
+      "title": "Pembroke Tribute Garden",
+      "description": "Steps leading to the Pembroke Campus, by Pembroke Hall. A brick-and-granite monument with a bronze map and plaque. Honors the Women's College (1891) and the 1971 Pembroke–Brown merger.",
+      "order_index": 16,
+      "points": 3,
+      "lat": 41.82925,
+      "lng": -71.40115
+    },
+    {
+      "slug": "lines-of-sight",
+      "route": null,
+      "title": "Lines of Sight",
+      "description": "Diane Samuels, 2006 · Sidney Frank Hall (Meeting St entrance, left then right). Glass bridge walls collaged with 600,000+ cut-glass shapes and engraved quotations — faint hands, enlarged 85x, run the length. Take the spiral staircase for +1 (awarded at review).",
+      "order_index": 17,
+      "points": 5,
+      "lat": 41.82935,
+      "lng": -71.4005
+    },
+    {
+      "slug": "posture-mirror",
+      "route": null,
+      "title": "Posture Mirror",
+      "description": "Nelson Fitness Center, 1st floor beyond reception. An elegant antique wood-framed full-length mirror from the 1912 women's \"correction room\"; used until 1971.",
+      "order_index": 18,
+      "points": 6,
+      "lat": 41.8306,
+      "lng": -71.3976
+    },
+    {
+      "slug": "indomitable",
+      "route": null,
+      "title": "Indomitable 🐻",
+      "description": "Nicky Bibby, 2013 · Ittleson Quad, in front of Nelson Fitness Center (Hope St). A towering standing bronze Kodiak (bear ~10 ft, piece ~14 ft) — Brown's most recent mascot bear, cast with the lost-wax process.",
+      "order_index": 19,
+      "points": 5,
+      "lat": 41.8305,
+      "lng": -71.39785
+    },
+    {
+      "slug": "infinite-composition",
+      "route": null,
+      "title": "Infinite Composition",
+      "description": "Leo Villareal, 2023 · Lindemann Performing Arts Center lobby, 144 Angell St. 58 LED light pillars pulsing with programmed patterns — custom software evokes swirling galaxies, tides, and fireflies.",
+      "order_index": 20,
+      "points": 6,
+      "lat": 41.8283,
+      "lng": -71.40165
     }
   ],
   "teams": [
-    { "name": "Team Bruno", "code": "BEAR12", "route": "college-hill" },
-    { "name": "Team Brunonia", "code": "LION42", "route": "college-hill" },
-    { "name": "Team Van Wickle", "code": "GATE77", "route": "downcity" },
-    { "name": "Team Ratty", "code": "FOOD99", "route": "downcity" }
+    {
+      "name": "Bruno's Bunch",
+      "code": "BRUNO",
+      "route": null
+    },
+    {
+      "name": "Van Wickle Wanderers",
+      "code": "GATES",
+      "route": null
+    },
+    {
+      "name": "Ratty Raiders",
+      "code": "RATTY",
+      "route": null
+    },
+    {
+      "name": "SciLi Night Owls",
+      "code": "SCILI",
+      "route": null
+    },
+    {
+      "name": "Blue Room Crew",
+      "code": "BLUES",
+      "route": null
+    },
+    {
+      "name": "Josiah Carberry Club",
+      "code": "JOSIA",
+      "route": null
+    },
+    {
+      "name": "Pembroke Pioneers",
+      "code": "PEMBR",
+      "route": null
+    },
+    {
+      "name": "Brunonia Brigade",
+      "code": "BRNIA",
+      "route": null
+    },
+    {
+      "name": "Rockefeller Rollers",
+      "code": "ROCKY",
+      "route": null
+    },
+    {
+      "name": "Spring Weekend Warriors",
+      "code": "SPRNG",
+      "route": null
+    },
+    {
+      "name": "Faunce House Foxes",
+      "code": "FAUNC",
+      "route": null
+    },
+    {
+      "name": "Keeney Quad Crew",
+      "code": "KEENY",
+      "route": null
+    },
+    {
+      "name": "Wriston Wildcats",
+      "code": "WRIST",
+      "route": null
+    },
+    {
+      "name": "Sayles Hall Squad",
+      "code": "SAYLS",
+      "route": null
+    },
+    {
+      "name": "Nelson Navigators",
+      "code": "NELSN",
+      "route": null
+    }
   ]
 }
